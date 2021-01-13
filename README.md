@@ -7,7 +7,7 @@ protected route.
 
 ## Application URL
 
-[Live Page](https://google.com){:target="\_blank" rel="noopener"}
+[Live Page](https://google.com)
 
 ## Authorization
 
@@ -28,10 +28,10 @@ npm install
 
 You can view how I planned the overall development prior to begin my work.
 
-[Project Plan](https://trello.com/b/2WodmouG/instagramclone){:target="\_blank" rel="noopener"}
+[Project Plan](https://trello.com/b/2WodmouG/instagramclone)
 
 ## Deploy to Heroku
 
 You can deploy this app to Heroku following the steps provided below. If you aren't yet a collaborator, you can request an invitation by sending an email to jkang.se@gmail.com
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://devcenter.heroku.com/articles/collab){:target="\_blank" rel="noopener"}
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://devcenter.heroku.com/articles/collab)
