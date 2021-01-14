@@ -9,18 +9,29 @@ import {
   FormControlLabel,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import CustomButton from '../Custom/CustomButton';
+import CustomField from '../Custom/CustomField';
+import Redirect from '../Redirect';
+import CTA from '../CTA';
 
-// const useStyles = makeStyles((theme) => {});
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    flexGrow: 1,
+    justifyContent: 'center',
+    marginTop: '12px',
     maxWidth: '350px',
-    border: '1px solid #000000',
-    margin: '0 auto',
   },
-  formBox: {},
+  main: {
+    border: '1px solid #dbdbdb',
+    margin: '0px 0px 10px 0px',
+    backgroundColor: theme.palette.white,
+    padding: '10px 0',
+  },
+  formBox: {
+    marginBottom: '20px',
+  },
   name: {
+    textAlign: 'center',
     margin: '22px auto 12px',
   },
   message: {
@@ -28,68 +39,142 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   buttonBox: {
-    margin: '8px 40px 8px 40px',
+    margin: '16px 40px 16px 40px',
+  },
+  option: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '10px 40px 18px',
+  },
+  line: {
+    flexGrow: 1,
+    flexShrink: 1,
+    height: '1px',
+    position: 'relative',
+    top: '.45em',
+    backgroundColor: '#dbdbdb',
+  },
+  between: {
+    color: '#8e8e8e',
+    flexGrow: 0,
+    flexShrink: 0,
+    fontSize: 13,
+    fontWeight: 'bold',
+    lineHeight: '15px',
+    margin: '0 18px',
+    textTransform: 'uppercase',
+  },
+  outerField: {
+    margin: '6px 40px',
+  },
+  legal: {
+    color: '#8e8e8e',
+    fontSize: '12px',
+    lineHeight: '16px',
+    margin: '10px 40px',
+    textAlign: 'center',
+  },
+  link: {
+    color: '#8e8e8e',
+    fontWeight: 600,
+    textDecoration: 'none',
+    '&visited': {
+      color: '#8e8e8e',
+    },
   },
 }));
 
 const Register = () => {
   const classes = useStyles();
+
   return (
-    <Grid className={classes.root}>
-      <CssBaseline />
-      <Typography variant="h1" className={classes.name}>
-        Instagram
-      </Typography>
-      <div className={classes.formBox}>
-        <form autoComplete="off">
-          <Typography variant="h2" className={classes.message}>
-            Sign up to see photos and videos from your friends
-          </Typography>
-          <div className={classes.buttonBox}>
-            <Button>Log in with Facebook</Button>
-          </div>
-          <TextField
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            required
-            fullWidth
-            name="email"
-          ></TextField>
-          <TextField
-            id="outlined-basic"
-            label="Full Name"
-            variant="outlined"
-            required
-            fullWidth
-            name="fullname"
-          ></TextField>
-          <TextField
-            id="outlined-basic"
-            label="Username"
-            variant="outlined"
-            required
-            fullWidth
-            name="username"
-          ></TextField>
-          <TextField
-            id="outlined-basic"
-            label="Password"
-            variant="outlined"
-            required
-            fullWidth
-            name="password"
-          ></TextField>
-          <Button type="submit">Sign up</Button>
-          <div>
-            <Typography variant="body2">
-              By signing up, you agree to our Terms, Data Policy and Cookies
-              Policy .
+    <div className={classes.root}>
+      <div className={classes.main}>
+        <CssBaseline />
+        <Typography variant="h1" className={classes.name}>
+          Instagram
+        </Typography>
+        <div className={classes.formBox}>
+          <form autoComplete="off">
+            <Typography variant="h2" className={classes.message}>
+              Sign up to see photos and videos from your friends.
             </Typography>
-          </div>
-        </form>
+            <div className={classes.buttonBox}>
+              <CustomButton name={'Log in with Facebook'} />
+            </div>
+            <div className={classes.option}>
+              <div className={classes.line}></div>
+              <div className={classes.between}>or</div>
+              <div className={classes.line}></div>
+            </div>
+            <CustomField
+              purpose={'Mobile Number or Email'}
+              placeholder={'Mobile Number or Email'}
+              type={'text'}
+              name={'email'}
+            />
+            <CustomField
+              purpose={'Full Name'}
+              placeholder={'Full Name'}
+              type={'text'}
+              name={'fullname'}
+            />
+            <CustomField
+              purpose={'Username'}
+              placeholder={'Username'}
+              type={'text'}
+              name={'username'}
+            />
+            <CustomField
+              purpose={'password'}
+              placeholder={'Password'}
+              type={'text'}
+              name={'password'}
+            />
+
+            <div className={classes.buttonBox}>
+              <CustomButton name={'Sign up'} />
+            </div>
+
+            <Typography variant="body2" className={classes.legal}>
+              By signing up, you agree to our{' '}
+              <a
+                className={classes.link}
+                target="_blank"
+                rel="noreferrer"
+                href="https://help.instagram.com/581066165581870"
+                tableindex="0"
+              >
+                Terms
+              </a>{' '}
+              ,{' '}
+              <a
+                className={classes.link}
+                target="_blank"
+                rel="noreferrer"
+                href="https://help.instagram.com/519522125107875"
+                tableindex="0"
+              >
+                Data Policy
+              </a>{' '}
+              and{' '}
+              <a
+                className={classes.link}
+                target="_blank"
+                rel="noreferrer"
+                href="https://help.instagram.com/1896641480634370?ref=ig"
+                tableindex="0"
+              >
+                Cookies Policy
+              </a>{' '}
+              .
+            </Typography>
+          </form>
+        </div>
       </div>
-    </Grid>
+      <Redirect message={'Have an account?'} action={'Log in'} />
+      <CTA />
+    </div>
   );
 };
 
