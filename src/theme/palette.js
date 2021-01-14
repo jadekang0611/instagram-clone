@@ -1,4 +1,4 @@
-const black = '000000';
+const black = '#000000';
 
 const palette = {
   black,
@@ -6,9 +6,6 @@ const palette = {
     light: '#FFFFFF',
     main: '#FAFAFA',
     constrastText: '#262626',
-  },
-  secondary: {
-    // none noted.
   },
   background: {
     default: '#FAFAFA',

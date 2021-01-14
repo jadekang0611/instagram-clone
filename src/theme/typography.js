@@ -4,11 +4,19 @@ const typography = {
   h1: {
     /* This theme is for the main logo */
     fontSize: 48,
-    fontFamily: 'Grand Hotel cursive',
+    fontFamily: 'Grand Hotel, cursive',
     '@media (max-width: 600px)': {
       fontSize: 48,
     },
     color: palette.black,
+  },
+  h2: {
+    /* This theme is for the main logo */
+    fontSize: 17,
+    lineHeight: '20px',
+    fontWeight: 600,
+    fontFamily: 'Roboto, sans-serif',
+    color: '#8e8e8e',
   },
   body1: {
     /* This theme is for the registration and sign in: Main Message */
