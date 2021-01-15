@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   action: {
     color: '#1799f7',
-    fontWeight: 400,
+    fontWeight: 500,
   },
 }));
 

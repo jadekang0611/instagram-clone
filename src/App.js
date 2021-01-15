@@ -10,22 +10,23 @@ import * as ROUTES from './constants/routes';
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    minHeight: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    height: 'calc(100vh - 100px)',
+    height: 'inherit',
+    [theme.breakpoints.down('xl')]: {
+      height: 'inherit',
+    },
   },
-  outter: {
+  main: {
     display: 'flex',
     flexDirection: 'column',
+    height: '100%',
   },
   container: {
-    marginTop: '20px',
     display: 'flex',
     height: '100%',
-    overflow: 'hidden',
-    marginBottom: '44px',
+    // overflow: 'hidden',
+    // marginBottom: '44px',
     justifyContent: 'center',
   },
   footer: {
@@ -43,11 +44,15 @@ function App() {
             path={ROUTES.LANDING}
             component={() => (
               <section className={classes.section}>
-                <main className={classes.outter}>
+                <div></div>
+                <main className={classes.main} role="main">
                   <div className={classes.container}>
                     <Landing />
                   </div>
                 </main>
+                <footer className={classes.footer}>
+                  <Footer />
+                </footer>
               </section>
             )}
           />
@@ -55,7 +60,7 @@ function App() {
             path={ROUTES.REGISTER}
             component={() => (
               <section>
-                <main className={classes.outter}>
+                <main className={classes.main}>
                   <div className={classes.container}>
                     <Register />
                   </div>
@@ -66,10 +71,6 @@ function App() {
           <Route path={ROUTES.SIGNIN} component={Register} />
         </Switch>
       </Router>
-
-      <footer className={classes.footer}>
-        <Footer />
-      </footer>
     </ThemeProvider>
   );
 }

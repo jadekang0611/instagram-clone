@@ -12,21 +12,43 @@ import { makeStyles } from '@material-ui/styles';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
-  main: { marginBottom: '52px' },
-  list: {
+  main: {
+    marginBottom: '52px',
     display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'center',
+  },
+  list: {
+    display: 'block',
+  },
+  footerList1: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+  },
+  footerList2: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
   },
   list2: {
     margin: '12px 0px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   itemBox: {
-    margin: '8px 0 12px 8px',
+    margin: '8px 0px 0px 8px',
+    display: 'block',
+  },
+  itemBox2: {
+    margin: '8px 0px 0px 8px',
   },
   item: {
     color: '#8e8e8e',
+    display: 'block',
     fontWeight: 500,
     textTransform: 'capitalize',
     '&visited': {
@@ -93,6 +115,37 @@ const footerList = [
   },
 ];
 
+const footerList2 = [
+  {
+    id: 11,
+    name: 'Beauty',
+  },
+  {
+    id: 12,
+    name: 'Dance & Performance',
+  },
+  {
+    id: 13,
+    name: 'Fitness',
+  },
+  {
+    id: 14,
+    name: 'Food & Drink',
+  },
+  {
+    id: 15,
+    name: 'Home & Garden',
+  },
+  {
+    id: 16,
+    name: 'Music',
+  },
+  {
+    id: 17,
+    name: 'Visual Arts',
+  },
+];
+
 const languages = [
   'Afrikaans',
   'Chinese',
@@ -142,23 +195,36 @@ const Footer = () => {
   return (
     <div className={classes.main}>
       <div className={classes.list}>
-        {footerList.map((item) => {
-          return (
-            <div key={item.id} className={classes.itemBox}>
-              <Typography variant="body2" className={classes.item}>
-                {item.name}
-              </Typography>
-            </div>
-          );
-        })}
-      </div>
-      <div className={clsx(classes.list, classes.list2)}>
-        <div className={classes.dropdownBox}>{/* <LanguageOption /> */}</div>
-        <div className={classes.copyright}>
-          <Typography variant="body2" className={classes.item}>
-            {'© '}
-            {new Date().getFullYear()} Instagram from Facebook
-          </Typography>
+        <div className={classes.footerList1}>
+          {footerList.map((item) => {
+            return (
+              <div key={item.id} className={classes.itemBox}>
+                <Typography variant="body2" className={classes.item}>
+                  {item.name}
+                </Typography>
+              </div>
+            );
+          })}
+        </div>
+        <div className={classes.footerList2}>
+          {footerList2.map((item) => {
+            return (
+              <div key={item.id} className={classes.itemBox2}>
+                <Typography variant="body2" className={classes.item}>
+                  {item.name}
+                </Typography>
+              </div>
+            );
+          })}
+        </div>
+        <div className={clsx(classes.list, classes.list2)}>
+          <div className={classes.dropdownBox}>{/* <LanguageOption /> */}</div>
+          <div className={classes.copyright}>
+            <Typography variant="body2" className={classes.item}>
+              {'© '}
+              {new Date().getFullYear()} Instagram from Facebook
+            </Typography>
+          </div>
         </div>
       </div>
     </div>

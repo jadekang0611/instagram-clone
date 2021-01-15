@@ -9,18 +9,21 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    flexGrow: '1',
+    alignItems: 'center',
     margin: '32px auto 0',
     paddingBottom: '32px',
     maxWidth: '935px',
     width: '100%',
   },
   deviceBox2: {
-    height: '618px',
+    height: '668px',
     position: 'relative',
     alignSelf: 'center',
     marginLeft: '-35px',
     marginRight: '-15px',
+    [theme.breakpoints.between('xs', 'md')]: {
+      display: 'none',
+    },
   },
   mainContainer: {
     display: 'flex',

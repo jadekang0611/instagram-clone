@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   name: {
     textAlign: 'center',
-    margin: '22px auto 12px',
+    margin: '22px auto 44px auto',
   },
   message: {
     margin: '0 40px 10px',
@@ -132,7 +132,7 @@ const SignIn = () => {
           <form autoComplete="off">
             <CustomField
               purpose={'Mobile Number or Email'}
-              placeholder={'Mobile Number or Email'}
+              placeholder={'Phone number, username, or email'}
               type={'text'}
               name={'email'}
             />
