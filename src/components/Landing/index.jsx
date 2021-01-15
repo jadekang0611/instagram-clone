@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Landing = () => {
   const classes = useStyles();
+  document.title = 'Login · Instagram';
   return (
     <div className={classes.root}>
       <div item className={classes.deviceBox}>

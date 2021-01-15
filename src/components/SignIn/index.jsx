@@ -118,8 +118,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignIn = () => {
   const classes = useStyles();
-
-  document.title = 'Instagram | Log in';
+  document.title = 'Login · Instagram';
   let history = useHistory();
 
   const [error, setError] = useState('');

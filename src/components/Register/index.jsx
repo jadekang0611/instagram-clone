@@ -87,7 +87,8 @@ const useStyles = makeStyles((theme) => ({
 const Register = () => {
   const classes = useStyles();
   let history = useHistory();
-  document.title = 'Instagram | Sign up';
+  
+  document.title = 'Login · Instagram'
 
   const [userData, setUserData] = useState({});
   const [error, setError] = useState('');

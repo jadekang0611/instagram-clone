@@ -122,7 +122,7 @@ const Profile = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  document.title = `Instagram | ${name}`;
+ 
   const history = useHistory();
   useEffect(() => {
     if (typeof props.location.state === 'undefined') {
