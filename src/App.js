@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     height: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   footer: {
     padding: theme.spacing(0, 2),

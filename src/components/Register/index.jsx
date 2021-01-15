@@ -80,6 +80,10 @@ const useStyles = makeStyles((theme) => ({
 const Register = () => {
   const classes = useStyles();
 
+  const click = (e) => {
+    console.log(e);
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.main}>
@@ -105,24 +109,29 @@ const Register = () => {
               placeholder={'Mobile Number or Email'}
               type={'text'}
               name={'email'}
+              required={'required'}
             />
             <CustomField
               purpose={'Full Name'}
               placeholder={'Full Name'}
               type={'text'}
               name={'fullname'}
+              required={'required'}
+              onClick={click}
             />
             <CustomField
               purpose={'Username'}
               placeholder={'Username'}
               type={'text'}
               name={'username'}
+              required={'required'}
             />
             <CustomField
               purpose={'password'}
               placeholder={'Password'}
               type={'text'}
               name={'password'}
+              required={'required'}
             />
 
             <div className={classes.buttonBox}>

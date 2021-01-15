@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: 'center',
     marginLeft: '-35px',
     marginRight: '-15px',
-    [theme.breakpoints.between('xs', 'md')]: {
+    [theme.breakpoints.between('xs', 'sm')]: {
       display: 'none',
     },
   },

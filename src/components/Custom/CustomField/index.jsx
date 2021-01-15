@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   outerField: {
@@ -62,11 +63,13 @@ const CustomField = (props) => {
     <div className={classes.outerField}>
       <div className={classes.labelnfield}>
         <label purpose={props.purpose} className={classes.inputLabel}>
-          <span className={classes.floatingLabel}>{props.placeholder}</span>
+          <span className={clsx(classes.floatingLabel, classes.float)}>
+            {props.placeholder}
+          </span>
           <input
             className={classes.formControl}
             type={props.type}
-            required
+            required={props.required}
             name={props.name}
           />
         </label>
