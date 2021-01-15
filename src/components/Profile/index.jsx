@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './Navbar';
@@ -6,6 +6,9 @@ import clsx from 'clsx';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import Posts from './Posts';
 import Portrait from './portrait.png';
+import API from '../../api';
+import * as ROUTES from '../../constants/routes';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -104,8 +107,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Profile = () => {
+const Profile = (props) => {
   const classes = useStyles();
+
+  document.title = `Instagram | ${props.location.state.name}`;
+  const history = useHistory();
+  useEffect(() => {
+    (async () => {
+      const res = await API.get('profile');
+      if (!res.data.loggedin) {
+        history.push(ROUTES.LANDING);
+      }
+    })();
+  }, []);
+
   return (
     <div className={classes.profileContainer}>
       <Navbar />
@@ -123,7 +138,7 @@ const Profile = () => {
               <Typography
                 className={clsx(classes.userNameSection, classes.userName)}
               >
-                Jade Kang
+                {props.location.state.name}
               </Typography>
               <button className={classes.edit}>Edit Profile</button>
               <SettingsOutlinedIcon className={classes.icon} />
@@ -153,7 +168,7 @@ const Profile = () => {
             </ul>
             <div className={classes.row2}>
               <Typography className={classes.email}>
-                jadekang@gmail.com
+                {props.location.state.email}
               </Typography>
             </div>
           </Grid>

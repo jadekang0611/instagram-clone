@@ -105,7 +105,13 @@ const Register = () => {
       try {
         await API.post('register', obj);
         setTimeout(() => {
-          history.push(ROUTES.PROFILE);
+          history.push({
+            pathname: ROUTES.PROFILE,
+            state: {
+              email: userData.email,
+              name: userData.name,
+            },
+          });
         }, 1000);
       } catch (e) {
         console.log(e);
