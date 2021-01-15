@@ -150,8 +150,6 @@ const SignIn = () => {
     (async () => {
       try {
         const res = await API.post('signin', obj);
-        console.log(res.error.status);
-        console.log(res.status);
         if (res.data.loggedin) {
           setTimeout(() => {
             history.push({
