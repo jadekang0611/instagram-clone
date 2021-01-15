@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, CssBaseline, ButtonBase } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { makeStyles } from '@material-ui/core/styles';
@@ -110,18 +110,36 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: 'none',
     },
   },
+  warning: {
+    paddingTop: '4px',
+    textAlign: 'center',
+  },
 }));
 
 const SignIn = () => {
   const classes = useStyles();
 
-  document.title = 'TemptureApp | Log in';
+  document.title = 'Instagram | Log in';
   let history = useHistory();
 
+  const [error, setError] = useState('');
   const [userInput, setUserInput] = useState({});
+  const [disabled, setDisabled] = useState(true);
 
   const userInputHandler = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
+    if (
+      typeof userInput.email === 'undefined' ||
+      typeof userInput.password === 'undefined' ||
+      userInput.email === null ||
+      userInput.password === null
+    ) {
+      console.log('true');
+      setDisabled(true);
+    } else {
+      console.log('false');
+      setDisabled(false);
+    }
   };
 
   const signinHandler = (e) => {
@@ -133,7 +151,8 @@ const SignIn = () => {
     (async () => {
       try {
         const res = await API.post('signin', obj);
-        console.log(res);
+        console.log(res.error.status);
+        console.log(res.status);
         if (res.data.loggedin) {
           setTimeout(() => {
             history.push({
@@ -148,7 +167,9 @@ const SignIn = () => {
           throw new Error(res.error);
         }
       } catch (e) {
-        console.log(e);
+        if (e) {
+          setError("Your email or password doesn't match in our system");
+        }
       }
     })();
   };
@@ -165,20 +186,32 @@ const SignIn = () => {
             <CustomField
               purpose={'Mobile Number or Email'}
               placeholder={'Phone number, username, or email'}
-              type={'text'}
+              type={'email'}
               name={'email'}
+              required={'required'}
               inputHandler={userInputHandler}
             />
             <CustomField
               purpose={'password'}
               placeholder={'Password'}
-              type={'text'}
+              type={'password'}
+              required={'required'}
               name={'password'}
               inputHandler={userInputHandler}
             />
-
+            <Typography
+              className={classes.warning}
+              variant="body2"
+              color="error"
+            >
+              {error}
+            </Typography>
             <div className={classes.buttonBox}>
-              <CustomButton submitHandler={signinHandler} name={'Log In'} />
+              <CustomButton
+                submitHandler={signinHandler}
+                name={'Log In'}
+                disabled={disabled}
+              />
             </div>
             <div className={classes.option}>
               <div className={classes.line}></div>
@@ -188,7 +221,6 @@ const SignIn = () => {
             <div className={classes.facebookBox}>
               <ButtonBase
                 classes={{ root: classes.root, label: classes.label }}
-                disableRipple="true"
               >
                 <FacebookIcon className={classes.smallIcon} />
                 <span className={classes.guide}>Log in with Facebook</span>

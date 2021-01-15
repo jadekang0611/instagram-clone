@@ -20,6 +20,13 @@ const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: 'none',
   },
+  disabledButton: {
+    backgroundColor: '#bbe0fc',
+    color: '#FFFFFF',
+  },
+  label: {
+    color: theme.palette.white,
+  },
 }));
 
 const CustomButton = (props) => {
@@ -27,7 +34,13 @@ const CustomButton = (props) => {
 
   return (
     <div className={classes.link}>
-      <Button className={classes.style} onClick={props.submitHandler}>
+      <Button
+        className={classes.style}
+        onClick={props.submitHandler}
+        classes={{ disabled: classes.disabledButton, label: classes.label }}
+        disabled={props.disabled}
+        startIcon={props.startIcon}
+      >
         {props.name}
       </Button>
     </div>

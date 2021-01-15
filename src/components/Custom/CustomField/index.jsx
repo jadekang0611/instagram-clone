@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #dbdbdb',
     backgroundColor: theme.palette.primary.main,
     borderRadius: '3px',
-    fontSize: '16px',
+    fontSize: '14px',
     lineHeight: '18px',
     padding: '9px 8px',
     flex: '1 0 auto',
@@ -63,15 +63,14 @@ const CustomField = (props) => {
     <div className={classes.outerField}>
       <div className={classes.labelnfield}>
         <label purpose={props.purpose} className={classes.inputLabel}>
-          <span className={clsx(classes.floatingLabel, classes.float)}>
-            {props.placeholder}
-          </span>
           <input
             className={classes.formControl}
             type={props.type}
             required={props.required}
             name={props.name}
+            placeholder={props.placeholder}
             onChange={props.inputHandler}
+            minLength={props.minLength}
           />
         </label>
       </div>

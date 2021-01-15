@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomButton from '../Custom/CustomButton';
@@ -8,6 +8,7 @@ import CTA from '../CTA';
 import * as ROUTES from '../../constants/routes';
 import { useHistory } from 'react-router-dom';
 import API from '../../api';
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,6 +78,10 @@ const useStyles = makeStyles((theme) => ({
       color: '#8e8e8e',
     },
   },
+  warning: {
+    textAlign: 'center',
+    paddingTop: '4px',
+  },
 }));
 
 const Register = () => {
@@ -86,37 +91,61 @@ const Register = () => {
 
   const [userData, setUserData] = useState({});
   const [error, setError] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
   const userInputHandler = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
+    console.log(userData);
 
+    if (
+      typeof userData.email === 'undefined' ||
+      typeof userData.name === 'undefined' ||
+      typeof userData.username === 'undefined' ||
+      typeof userData.password === 'undefined' ||
+      userData.email === null ||
+      userData.name === null ||
+      userData.username === null ||
+      userData.password === null
+    ) {
+      console.log('true');
+      setDisabled(true);
+    } else {
+      console.log('false');
+      setDisabled(false);
+    }
   };
 
   const registerHandler = (e) => {
     e.preventDefault();
-    setError('');
-    const obj = {
-      email: userData.email,
-      name: userData.name,
-      password: userData.password,
-    };
-   
-    (async () => {
-      try {
-        await API.post('register', obj);
-        setTimeout(() => {
-          history.push({
-            pathname: ROUTES.PROFILE,
-            state: {
-              email: userData.email,
-              name: userData.name,
-            },
-          });
-        }, 1000);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    if (userData.password.length < 6) {
+      setError('Email should be longer than 6 characters');
+    } else if (userData.email.length < 6) {
+      setError('Password should be longer than 6 characters');
+    } else {
+      setError('');
+      const obj = {
+        email: userData.email,
+        name: userData.name,
+        password: userData.password,
+      };
+
+      (async () => {
+        try {
+          await API.post('register', obj);
+          setTimeout(() => {
+            history.push({
+              pathname: ROUTES.PROFILE,
+              state: {
+                email: userData.email,
+                name: userData.name,
+              },
+            });
+          }, 1000);
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }
   };
 
   return (
@@ -132,7 +161,10 @@ const Register = () => {
               Sign up to see photos and videos from your friends.
             </Typography>
             <div className={classes.buttonBox}>
-              <CustomButton name={'Log in with Facebook'} />
+              <CustomButton
+                name={'Log in with Facebook'}
+                startIcon={<FacebookIcon />}
+              />
             </div>
             <div className={classes.option}>
               <div className={classes.line}></div>
@@ -142,7 +174,7 @@ const Register = () => {
             <CustomField
               purpose={'Mobile Number or Email'}
               placeholder={'Mobile Number or Email'}
-              type={'text'}
+              type={'email'}
               name={'email'}
               required={'required'}
               inputHandler={userInputHandler}
@@ -166,14 +198,24 @@ const Register = () => {
             <CustomField
               purpose={'password'}
               placeholder={'Password'}
-              type={'text'}
+              type={'password'}
               name={'password'}
               required={'required'}
               inputHandler={userInputHandler}
             />
-
+            <Typography
+              variant="body2"
+              color="error"
+              className={classes.warning}
+            >
+              {error}
+            </Typography>
             <div className={classes.buttonBox}>
-              <CustomButton name={'Sign up'} submitHandler={registerHandler} />
+              <CustomButton
+                name={'Sign up'}
+                disabled={disabled}
+                submitHandler={registerHandler}
+              />
             </div>
 
             <Typography variant="body2" className={classes.legal}>

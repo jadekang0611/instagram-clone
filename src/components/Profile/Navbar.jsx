@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Typography, InputBase } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
@@ -7,6 +7,9 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import SearchIcon from '@material-ui/icons/Search';
+import * as ROUTES from '../../constants/routes';
+import { useHistory } from 'react-router-dom';
+import API from '../../api';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -80,6 +83,28 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const [error, setError] = useState('');
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    setError('');
+
+    (async () => {
+      try {
+        await API.get('logout');
+        setTimeout(() => {
+          history.push({
+            pathname: ROUTES.SIGNIN,
+          });
+        }, 1000);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  };
+
   return (
     <Grid container className={classes.appBar} justify="center" spacing={1}>
       <Grid sm={4} item>
@@ -105,7 +130,10 @@ const Navbar = () => {
           <NearMeOutlinedIcon className={classes.appIcon} />
           <FavoriteBorderOutlinedIcon className={classes.appIcon} />
           <ExploreOutlinedIcon className={classes.appIcon} />
-          <ExitToAppOutlinedIcon className={classes.appIcon} />
+          <ExitToAppOutlinedIcon
+            className={classes.appIcon}
+            onClick={logoutHandler}
+          />
         </div>
       </Grid>
     </Grid>

@@ -9,6 +9,7 @@ import Portrait from './portrait.png';
 import API from '../../api';
 import * as ROUTES from '../../constants/routes';
 import { useHistory } from 'react-router-dom';
+import Footer from '../Footer';
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -16,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
     background: theme.palette.primary.main,
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2, 0),
+    },
+  },
+  profileCard: {
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1, 1),
     },
   },
   col1: {
@@ -105,6 +111,9 @@ const useStyles = makeStyles((theme) => ({
     height: '1px',
     margin: '40px 0px 52px 0',
   },
+  spacing: {
+    paddingTop: '40px',
+  },
 }));
 
 const Profile = (props) => {
@@ -134,7 +143,7 @@ const Profile = (props) => {
     <div className={classes.profileContainer}>
       <Navbar />
       <div className={classes.main}>
-        <Grid container>
+        <Grid container className={classes.profileCard}>
           <Grid item md={4} className={classes.col1}>
             <img
               src={Portrait}
@@ -182,6 +191,8 @@ const Profile = (props) => {
         </Grid>
         <div className={classes.line} />
         <Posts />
+        <div className={classes.spacing} />
+        <Footer />
       </div>
     </div>
   );

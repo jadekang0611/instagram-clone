@@ -27,7 +27,12 @@ const postList = [
 const Posts = () => {
   const classes = useStyles();
   return (
-    <Grid container justify="space-between" spacing={2}>
+    <Grid
+      container
+      justify="space-between"
+      spacing={2}
+      className={classes.postGrid}
+    >
       {postList.map((item, id) => {
         return (
           <Grid key={id} item xs={4}>
