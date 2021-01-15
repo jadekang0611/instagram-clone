@@ -7,7 +7,7 @@ protected route.
 
 ## Application URL
 
-[Live Page](https://google.com)
+[Live Page](https://frozen-wildwood-74965.herokuapp.com/)
 
 ## Authorization
 
@@ -26,9 +26,15 @@ npm install
 
 ## Project Plan
 
-You can view how I planned the overall development prior to begin my work.
+You can view how I planned the overall development prior to beginning my work.
 
 [Project Plan](https://trello.com/b/2WodmouG/instagramclone)
+
+## Technologies
+
+- ReactJS
+- Material-UI
+- Axios
 
 ## Deploy to Heroku
 
