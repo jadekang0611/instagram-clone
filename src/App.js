@@ -9,6 +9,13 @@ import Footer from './components/Footer';
 import * as ROUTES from './constants/routes';
 
 const useStyles = makeStyles((theme) => ({
+  section: {
+    minHeight: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: 'calc(100vh - 100px)',
+  },
   outter: {
     display: 'flex',
     flexDirection: 'column',
@@ -30,16 +37,20 @@ function App() {
   const classes = useStyles();
   return (
     <ThemeProvider theme={theme}>
-      {/* <section>
-        <main className={classes.outter}>
-          <div className={classes.container}>
-            <Register />
-          </div>
-        </main>
-      </section> */}
       <Router>
         <Switch>
-          <Route exact path={ROUTES.LANDING} component={Landing} />
+          <Route
+            path={ROUTES.LANDING}
+            component={() => (
+              <section className={classes.section}>
+                <main className={classes.outter}>
+                  <div className={classes.container}>
+                    <Landing />
+                  </div>
+                </main>
+              </section>
+            )}
+          />
           <Route
             path={ROUTES.REGISTER}
             component={() => (
