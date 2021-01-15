@@ -5,8 +5,10 @@ import theme from './theme';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Register from './components/Register';
 import Landing from './components/Landing';
+import Profile from './components/Profile';
 import Footer from './components/Footer';
 import * as ROUTES from './constants/routes';
+import SignIn from './components/SignIn';
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -25,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     height: '100%',
-    // overflow: 'hidden',
-    // marginBottom: '44px',
     justifyContent: 'center',
   },
   footer: {
@@ -41,10 +41,10 @@ function App() {
       <Router>
         <Switch>
           <Route
+            exact
             path={ROUTES.LANDING}
             component={() => (
               <section className={classes.section}>
-                <div></div>
                 <main className={classes.main} role="main">
                   <div className={classes.container}>
                     <Landing />
@@ -57,18 +57,38 @@ function App() {
             )}
           />
           <Route
+            exact
             path={ROUTES.REGISTER}
             component={() => (
-              <section>
-                <main className={classes.main}>
+              <section className={classes.section}>
+                <main className={classes.main} role="main">
                   <div className={classes.container}>
                     <Register />
                   </div>
                 </main>
+                <footer className={classes.footer}>
+                  <Footer />
+                </footer>
               </section>
             )}
           />
-          <Route path={ROUTES.SIGNIN} component={Register} />
+          <Route
+            exact
+            path={ROUTES.SIGNIN}
+            component={() => (
+              <section className={classes.section}>
+                <main className={classes.main} role="main">
+                  <div className={classes.container}>
+                    <SignIn />
+                  </div>
+                </main>
+                <footer className={classes.footer}>
+                  <Footer />
+                </footer>
+              </section>
+            )}
+          />
+          <Route path={ROUTES.PROFILE} component={Profile} />
         </Switch>
       </Router>
     </ThemeProvider>

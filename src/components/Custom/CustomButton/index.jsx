@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   style: {
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '5px 9px',
     border: '1px solid transparent',
   },
+  link: {
+    textDecoration: 'none',
+  },
 }));
 
 const CustomButton = (props) => {
@@ -24,7 +28,9 @@ const CustomButton = (props) => {
 
   return (
     <>
-      <Button className={classes.style}>{props.name}</Button>
+      <Link to={props.route} className={classes.link}>
+        <Button className={classes.style}>{props.name}</Button>
+      </Link>
     </>
   );
 };

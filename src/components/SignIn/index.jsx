@@ -15,6 +15,7 @@ import CustomButton from '../Custom/CustomButton';
 import CustomField from '../Custom/CustomField';
 import Redirect from '../Redirect';
 import CTA from '../CTA';
+import * as ROUTES from '../../constants/routes';
 
 const useStyles = makeStyles((theme) => ({
   parent: {
@@ -144,7 +145,7 @@ const SignIn = () => {
             />
 
             <div className={classes.buttonBox}>
-              <CustomButton name={'Log In'} />
+              <CustomButton route={ROUTES.PROFILE} name={'Log In'} />
             </div>
             <div className={classes.option}>
               <div className={classes.line}></div>
@@ -168,7 +169,13 @@ const SignIn = () => {
           </form>
         </div>
       </div>
-      <Redirect message={"Don't have an account?"} action={'Sign up'} />
+
+      <Redirect
+        message={"Don't have an account?"}
+        route={ROUTES.REGISTER}
+        action={'Sign up'}
+      />
+
       <CTA />
     </div>
   );

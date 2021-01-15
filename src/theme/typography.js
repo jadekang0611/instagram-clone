@@ -3,7 +3,7 @@ import palette from './palette';
 const typography = {
   h1: {
     /* This theme is for the main logo */
-    fontSize: 56,
+    fontSize: 50,
     fontFamily: 'Grand Hotel, cursive',
     '@media (max-width: 600px)': {
       fontSize: 48,

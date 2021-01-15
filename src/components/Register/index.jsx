@@ -1,18 +1,11 @@
 import React from 'react';
-import {
-  Typography,
-  Grid,
-  CssBaseline,
-  Button,
-  TextField,
-  Paper,
-  FormControlLabel,
-} from '@material-ui/core';
+import { Typography, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomButton from '../Custom/CustomButton';
 import CustomField from '../Custom/CustomField';
 import Redirect from '../Redirect';
 import CTA from '../CTA';
+import * as ROUTES from '../../constants/routes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -133,7 +126,7 @@ const Register = () => {
             />
 
             <div className={classes.buttonBox}>
-              <CustomButton name={'Sign up'} />
+              <CustomButton route={ROUTES.PROFILE} name={'Sign up'} />
             </div>
 
             <Typography variant="body2" className={classes.legal}>
@@ -172,7 +165,11 @@ const Register = () => {
           </form>
         </div>
       </div>
-      <Redirect message={'Have an account?'} action={'Log in'} />
+      <Redirect
+        message={'Have an account?'}
+        route={ROUTES.SIGNIN}
+        action={'Log in'}
+      />
       <CTA />
     </div>
   );
