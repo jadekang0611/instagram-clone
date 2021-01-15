@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomButton from '../Custom/CustomButton';
@@ -6,6 +6,8 @@ import CustomField from '../Custom/CustomField';
 import Redirect from '../Redirect';
 import CTA from '../CTA';
 import * as ROUTES from '../../constants/routes';
+import { useHistory } from 'react-router-dom';
+import API from '../../api';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,9 +81,36 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = () => {
   const classes = useStyles();
+  let history = useHistory();
+  document.title = 'Instagram | Sign up';
 
-  const click = (e) => {
-    console.log(e);
+  const [userData, setUserData] = useState({});
+  const [error, setError] = useState('');
+
+  const userInputHandler = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const registerHandler = (e) => {
+    e.preventDefault();
+    setError('');
+    const obj = {
+      email: userData.email,
+      name: userData.name,
+      password: userData.password,
+    };
+    console.log(obj);
+    (async () => {
+      try {
+        await API.post('register', obj);
+        setTimeout(() => {
+          history.push(ROUTES.PROFILE);
+        }, 1000);
+      } catch (e) {
+        console.log(e);
+      }
+    })();
   };
 
   return (
@@ -110,14 +139,15 @@ const Register = () => {
               type={'text'}
               name={'email'}
               required={'required'}
+              inputHandler={userInputHandler}
             />
             <CustomField
               purpose={'Full Name'}
               placeholder={'Full Name'}
               type={'text'}
-              name={'fullname'}
+              name={'name'}
               required={'required'}
-              onClick={click}
+              inputHandler={userInputHandler}
             />
             <CustomField
               purpose={'Username'}
@@ -125,6 +155,7 @@ const Register = () => {
               type={'text'}
               name={'username'}
               required={'required'}
+              inputHandler={userInputHandler}
             />
             <CustomField
               purpose={'password'}
@@ -132,10 +163,11 @@ const Register = () => {
               type={'text'}
               name={'password'}
               required={'required'}
+              inputHandler={userInputHandler}
             />
 
             <div className={classes.buttonBox}>
-              <CustomButton route={ROUTES.PROFILE} name={'Sign up'} />
+              <CustomButton name={'Sign up'} submitHandler={registerHandler} />
             </div>
 
             <Typography variant="body2" className={classes.legal}>

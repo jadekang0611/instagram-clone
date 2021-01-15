@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   style: {
@@ -27,11 +27,11 @@ const CustomButton = (props) => {
   const classes = useStyles();
 
   return (
-    <>
-      <Link to={props.route} className={classes.link}>
-        <Button className={classes.style}>{props.name}</Button>
-      </Link>
-    </>
+    <div className={classes.link}>
+      <Button className={classes.style} onClick={props.submitHandler}>
+        {props.name}
+      </Button>
+    </div>
   );
 };
 

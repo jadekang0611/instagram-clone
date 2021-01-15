@@ -71,6 +71,7 @@ const CustomField = (props) => {
             type={props.type}
             required={props.required}
             name={props.name}
+            onChange={props.inputHandler}
           />
         </label>
       </div>
