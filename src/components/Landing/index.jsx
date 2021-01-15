@@ -1,19 +1,7 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SignIn from '../SignIn';
-import Register from '../Register';
 import DeviceImg from './instagramDevice.png';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-} from 'react-router-dom';
-
-import * as ROUTES from '../../constants/routes';
-import Profile from '../Profile';
 
 const useStyles = makeStyles((theme) => ({
   root: {

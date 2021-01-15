@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  Grid,
-  Typography,
-  AppBar,
-  Toolbar,
-  InputBase,
-  IconButton,
-} from '@material-ui/core';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography, InputBase } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import NearMeOutlinedIcon from '@material-ui/icons/NearMeOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';

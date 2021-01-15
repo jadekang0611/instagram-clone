@@ -1,14 +1,5 @@
-import React from 'react';
-import {
-  Typography,
-  Grid,
-  CssBaseline,
-  Button,
-  TextField,
-  Paper,
-  FormControlLabel,
-  ButtonBase,
-} from '@material-ui/core';
+import React, { useState } from 'react';
+import { Typography, CssBaseline, ButtonBase } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomButton from '../Custom/CustomButton';
@@ -16,6 +7,8 @@ import CustomField from '../Custom/CustomField';
 import Redirect from '../Redirect';
 import CTA from '../CTA';
 import * as ROUTES from '../../constants/routes';
+import { useHistory } from 'react-router-dom';
+import API from '../../api';
 
 const useStyles = makeStyles((theme) => ({
   parent: {
@@ -122,6 +115,44 @@ const useStyles = makeStyles((theme) => ({
 const SignIn = () => {
   const classes = useStyles();
 
+  document.title = 'TemptureApp | Log in';
+  let history = useHistory();
+
+  const [userInput, setUserInput] = useState({});
+
+  const userInputHandler = (e) => {
+    setUserInput({ ...userInput, [e.target.name]: e.target.value });
+  };
+
+  const signinHandler = (e) => {
+    e.preventDefault();
+    const obj = {
+      email: userInput.email,
+      password: userInput.password,
+    };
+    (async () => {
+      try {
+        const res = await API.post('signin', obj);
+        console.log(res);
+        if (res.data.loggedin) {
+          setTimeout(() => {
+            history.push({
+              pathname: ROUTES.PROFILE,
+              state: {
+                email: userInput.email,
+                name: res.data.user.name,
+              },
+            });
+          }, 1000);
+        } else {
+          throw new Error(res.error);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  };
+
   return (
     <div className={classes.parent}>
       <div className={classes.main}>
@@ -136,16 +167,18 @@ const SignIn = () => {
               placeholder={'Phone number, username, or email'}
               type={'text'}
               name={'email'}
+              inputHandler={userInputHandler}
             />
             <CustomField
               purpose={'password'}
               placeholder={'Password'}
               type={'text'}
               name={'password'}
+              inputHandler={userInputHandler}
             />
 
             <div className={classes.buttonBox}>
-              <CustomButton route={ROUTES.PROFILE} name={'Log In'} />
+              <CustomButton submitHandler={signinHandler} name={'Log In'} />
             </div>
             <div className={classes.option}>
               <div className={classes.line}></div>

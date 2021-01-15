@@ -89,7 +89,7 @@ const Register = () => {
 
   const userInputHandler = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
-    console.log(e.target.value);
+
   };
 
   const registerHandler = (e) => {
@@ -100,7 +100,7 @@ const Register = () => {
       name: userData.name,
       password: userData.password,
     };
-    console.log(obj);
+   
     (async () => {
       try {
         await API.post('register', obj);

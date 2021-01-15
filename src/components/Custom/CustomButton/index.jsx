@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { useHistory, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   style: {

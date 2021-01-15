@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Grid, Typography, Button } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './Navbar';
 import clsx from 'clsx';
@@ -110,9 +110,18 @@ const useStyles = makeStyles((theme) => ({
 const Profile = (props) => {
   const classes = useStyles();
 
-  document.title = `Instagram | ${props.location.state.name}`;
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  document.title = `Instagram | ${name}`;
   const history = useHistory();
   useEffect(() => {
+    if (typeof props.location.state === 'undefined') {
+      history.push(ROUTES.LANDING);
+    } else {
+      setName(props.location.state.name);
+      setEmail(props.location.state.email);
+    }
     (async () => {
       const res = await API.get('profile');
       if (!res.data.loggedin) {
@@ -138,7 +147,7 @@ const Profile = (props) => {
               <Typography
                 className={clsx(classes.userNameSection, classes.userName)}
               >
-                {props.location.state.name}
+                {name}
               </Typography>
               <button className={classes.edit}>Edit Profile</button>
               <SettingsOutlinedIcon className={classes.icon} />
@@ -167,9 +176,7 @@ const Profile = (props) => {
               </li>
             </ul>
             <div className={classes.row2}>
-              <Typography className={classes.email}>
-                {props.location.state.email}
-              </Typography>
+              <Typography className={classes.email}>{email}</Typography>
             </div>
           </Grid>
         </Grid>

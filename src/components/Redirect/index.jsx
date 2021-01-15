@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Redirect = (props) => {
   const classes = useStyles();
-  console.log(props);
   return (
     <div className={classes.container}>
       <Typography variant="body1" className={classes.question}>
