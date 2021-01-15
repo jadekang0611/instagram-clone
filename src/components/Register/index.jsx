@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Typography, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomButton from '../Custom/CustomButton';
@@ -87,8 +87,8 @@ const useStyles = makeStyles((theme) => ({
 const Register = () => {
   const classes = useStyles();
   let history = useHistory();
-  
-  document.title = 'Login · Instagram'
+
+  document.title = 'Login · Instagram';
 
   const [userData, setUserData] = useState({});
   const [error, setError] = useState('');
